@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import MainPage from './views/MainPage'
 import Navbar from './components/Navbar'
-
+import Sidebar from './components/Sidebar'
 
 class App extends Component {
   state ={
@@ -19,6 +19,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Sidebar
+        handleToggleButton={this.handleToggleButton}
+        isSideBarShowed={this.state.isSideBarShowed}
+        />
         <Navbar
         isSideBarShowed={this.state.isSideBarShowed}
         handleToggleButton={this.handleToggleButton}
