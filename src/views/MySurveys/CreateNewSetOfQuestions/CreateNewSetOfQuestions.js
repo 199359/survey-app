@@ -5,6 +5,9 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { TrashIcon } from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import DatePicker from 'material-ui/DatePicker';
 
 const style = {
     margin: 10,
@@ -39,5 +42,13 @@ const CreateNewSetOfQuestions = props => (
         </div>
     </div>
 )
+
+const mapStateToProps = () => ({
+
+})
+
+const mapDispatchToProps = () => ({
+    
+})
 
 export default CreateNewSetOfQuestions

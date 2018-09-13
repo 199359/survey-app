@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import navigation from './state/navigation'
+import createNewSetOfQuestiones from './state/createNewSetOfQuestions'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
-    navigation
+    navigation,
+    createNewSetOfQuestiones
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
