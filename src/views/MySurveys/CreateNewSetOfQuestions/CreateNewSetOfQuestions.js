@@ -1,11 +1,10 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom'
-import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { TrashIcon } from '../../../icons/TrashIcon'
-import { red100 } from 'material-ui/styles/colors';
+import CustomTextField from '../../../components/SurveyElements/CustomTextField'
 
 const style = {
     margin: 10,
@@ -19,11 +18,8 @@ const CreateNewSetOfQuestions = props => (
     <div className='CreateNewSetOfQuestions-container'>
         <div>
             <form>
-                <TextField
-                    style={{width: '70%'}}
-                    floatingLabelText="Name of new set of questions..."
-                />
-                <a onClick={()=> alert('tash')}>
+                <CustomTextField/>
+                <a onClick={()=> alert('tash')} hoverColor='red100'>
                 <TrashIcon/>
                 </a>
             </form>
