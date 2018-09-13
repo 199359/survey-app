@@ -12,10 +12,10 @@ class MySurveys extends React.Component {
                 >
                     <RaisedButton className='my_surveys-menu_option_button' label="CREATE NEW SET OF QUESTIONS" />
                 </Link>
-                <Link 
-                to={'/preview-my-set-of-questions/'}
+                <Link
+                    to={'/preview-my-set-of-questions/'}
                 >
-                <RaisedButton className='my_surveys-menu_option_button' label="PREVIEW MY SETS OF QUESTIONS" />
+                    <RaisedButton className='my_surveys-menu_option_button' label="PREVIEW MY SETS OF QUESTIONS" />
                 </Link>
             </div>
         )

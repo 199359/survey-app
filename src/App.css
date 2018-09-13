@@ -31,3 +31,11 @@
   margin: 5px;
   width: 90%;
 }
+
+.create_new_set_of_questions-cancel_button {
+  width: 20%;
+}
+
+.create_new_set_of_questions-create_button {
+  width: 60%;
+}
