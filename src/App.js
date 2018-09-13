@@ -9,6 +9,8 @@ import GroupOfUsers from './views/GroupOfUsers'
 import MySurveys from './views/MySurveys'
 import { Provider } from 'react-redux'
 import { store } from './store'
+import CreateNewSetOfQuestions from './views/MySurveys/CreateNewSetOfQuestions'
+import PreviewMySetOfQuestions from './views/MySurveys/PreviewMySetOfQuestions'
 
 
 class App extends Component {
@@ -24,6 +26,8 @@ class App extends Component {
             <Route path={'/create-new-research/'} exact component={CreateNewReseatch} />
             <Route path={'/group-of-users/'} exact component={GroupOfUsers} />
             <Route path={'/my-surveys/'} exact component={MySurveys} />
+            <Route path={'/create-new-set-of-questions/'} exact component={CreateNewSetOfQuestions} />
+            <Route path={'/preview-my-set-of-questions/'} exact component={PreviewMySetOfQuestions} />
           </div>
         </BrowserRouter>
       </Provider>
