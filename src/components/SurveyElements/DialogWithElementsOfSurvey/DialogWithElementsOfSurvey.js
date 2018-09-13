@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import { connect } from 'react-redux'
 import { toggleDialogWindow } from '../../../state/createNewSetOfQuestions'
 import RaisedButton from 'material-ui/RaisedButton';
+import DialogWindowToRenderInside from './DialogWindowToRenderInside'
 
 const style = {
     margin: 10,
@@ -31,7 +32,7 @@ class DialogWithElementsOfSurvey extends React.Component {
                     open={this.props._isDialogWindowOpen}
                     onRequestClose={this.handleClose}
                 >
-                    Open a Date Picker dialog from within a dialog.
+                <DialogWindowToRenderInside/>
             </Dialog>
             </div>
         )

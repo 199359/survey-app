@@ -13,8 +13,6 @@ const style = {
     margin: 10,
 }
 
-
-
 class CreateNewSetOfQuestions extends React.Component {
     render() {
         return (
