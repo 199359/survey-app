@@ -1,10 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { TrashIcon } from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
+import {toggleDialogWindow} from '../../../state/createNewSetOfQuestions'
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -28,9 +30,10 @@ const CreateNewSetOfQuestions = props => (
             </form>
         </div>
         <div>
-            <FloatingActionButton mini={true} style={style}>
-                <ContentAdd />
+            <FloatingActionButton mini={true} style={style} >
+                <ContentAdd  onClick={()=>props._toggleDialogWindow()}/>
             </FloatingActionButton>
+            
         </div>
         <div>
             <Link
@@ -43,12 +46,11 @@ const CreateNewSetOfQuestions = props => (
     </div>
 )
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = state => ({
 })
 
-const mapDispatchToProps = () => ({
-    
+const mapDispatchToProps = dispatch => ({
+    _toggleDialogWindow: () => dispatch(toggleDialogWindow())
 })
 
-export default CreateNewSetOfQuestions
+export default connect(mapStateToProps, mapDispatchToProps)(CreateNewSetOfQuestions)
