@@ -1,10 +1,10 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 
-const CustomTextField = () => (
+const CustomTextField = (props) => (
         <TextField
             style={{ width: '70%' }}
-            floatingLabelText="Name of new set of questions..."
+            floatingLabelText={props.floatingLabelText}
         />
 )
 
