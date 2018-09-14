@@ -2,6 +2,7 @@ const TOGGLE_DIALOG_WINDOW = 'createNewSetOfQuestiones/TOGGLE_DIALOG_WINDOW'
 const VALUE_OF_DROPDOWN_MENU_IN_DIALOG = 'createNewSetOfQuestiones/VALUE_OF_DROPDOWN_MENU_IN_DIALOG'
 const REMOVE_ELEMENT_FROM_DIALOG = 'createNewSetOfQuestiones/REMOVE_ELEMENT_FROM_DIALOG'
 const ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES'
+const ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS = 'createNewSetOfQuestiones/ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS'
 
 
 export const toggleDialogWindow = () => ({
@@ -29,13 +30,16 @@ export const onClickToAddNewElements = () => {
     }
 }
 
+export const addNewTextFieldToSetOfQuestions = () => ({
+    type: ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS
+})
 
 const initialState = {
     isDialogWindowOpen: false,
     valueOfDropdownMenuInDialog: 1,
     choosenValues: [],
     availableElements: ['Text Field', 'Scale'],
-    elementsToSetOfQuestions: []
+    elementsToSetOfQuestions: [],
 }
 
 export default (state = initialState, action) => {
@@ -60,7 +64,8 @@ export default (state = initialState, action) => {
                 return {
                     ...el,
                     key: i,
-                    elementName: `${i+1} ${state.availableElements[el.elementId]}`
+                    elementName: `${i+1} ${state.availableElements[el.elementId]}`,
+                    isQuestionCompleted: false
                 }
             })
         }
@@ -80,6 +85,16 @@ export default (state = initialState, action) => {
         return {
             ...state,
             elementsToSetOfQuestions: state.elementsToSetOfQuestions.concat(state.choosenValues)
+        }
+        case ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS:
+        return {
+            ...state,
+            elementsToSetOfQuestions: state.elementsToSetOfQuestions.map((el, i, arr) => {
+                return {
+                    ...el,
+                    isQuestionCompleted: true
+                }
+            })
         }
         default:
         return state

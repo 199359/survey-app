@@ -6,7 +6,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import { TrashIcon } from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
-import { toggleDialogWindow } from '../../../state/mySurveys/createNewSetOfQuestions'
+import { toggleDialogWindow, addNewTextFieldToSetOfQuestions } from '../../../state/mySurveys/createNewSetOfQuestions'
 import DialogWithElementsOfSurvey from '../../../components/SurveyElements/DialogWithElementsOfSurvey'
 import FlatButton from 'material-ui/FlatButton'
 import Slider from 'material-ui/Slider'
@@ -42,7 +42,14 @@ class CreateNewSetOfQuestions extends React.Component {
                         {this.props._elementsToSetOfQuestions.map((el, i, arr) => {
                             return (
                                 <div>
-                                    {el.elementId === 0
+                                    {el.isQuestionCompleted === true 
+                                        ? 
+                                        <div>
+                                            Completed
+                                        </div> 
+                                        : 
+                                        <div>
+                                            {el.elementId === 0
                                         ?
                                         <div>
                                             <CustomTextField
@@ -50,6 +57,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                             />
                                             <FlatButton
                                                 label="ADD"
+                                                onClick={() => this.props._addNewTextFieldToSetOfQuestions()}
                                             />
                                             <TrashIcon />
                                         </div>
@@ -84,6 +92,9 @@ class CreateNewSetOfQuestions extends React.Component {
                                         :
                                         ''
                                     }
+                                        </div>
+                                    }
+                                    
                                     <hr />
                                 </div>
                             )
@@ -116,7 +127,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    _toggleDialogWindow: () => dispatch(toggleDialogWindow())
+    _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
+    _addNewTextFieldToSetOfQuestions: () => dispatch(addNewTextFieldToSetOfQuestions())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNewSetOfQuestions)
