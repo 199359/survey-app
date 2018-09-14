@@ -9,8 +9,8 @@ import { onChanegeValueOfDropdownMenuInDialog } from '../../../../state/mySurvey
 const styles = {
     customWidth: {
         width: 200,
-    },
-};
+    }
+}
 
 class DialogWindowToRenderInside extends React.Component {
     render() {

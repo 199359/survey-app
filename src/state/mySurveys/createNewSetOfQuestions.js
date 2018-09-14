@@ -14,6 +14,7 @@ export const onChanegeValueOfDropdownMenuInDialog = (value) => ({
 const initialState = {
     isDialogWindowOpen: false,
     valueOfDropdownMenuInDialog: 1,
+    choosenValues: []
 }
 
 export default (state = initialState, action) => {
@@ -21,12 +22,24 @@ export default (state = initialState, action) => {
         case TOGGLE_DIALOG_WINDOW:
         return {
             ...state,
-            isDialogWindowOpen: !state.isDialogWindowOpen
+            isDialogWindowOpen: !state.isDialogWindowOpen,
+            valueOfDropdownMenuInDialog: 1,
         }
         case VALUE_OF_DROPDOWN_MENU_IN_DIALOG:
         return {
             ...state,
-            valueOfDropdownMenuInDialog: action.value
+            valueOfDropdownMenuInDialog: action.value,
+            choosenValues: state.choosenValues.concat([action.value].map((el, i)=>{
+                return {
+                    label: el
+                }
+            })
+            ).map((el, i)=>{
+                return {
+                    ...el,
+                    key: i
+                }
+            })
         }
         default:
         return state
