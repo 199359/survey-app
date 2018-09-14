@@ -1,7 +1,7 @@
 import React from 'react'
 import Dialog from 'material-ui/Dialog';
 import { connect } from 'react-redux'
-import { toggleDialogWindow, addNewElementsToSetOfQuestiones } from '../../../state/mySurveys/createNewSetOfQuestions'
+import { toggleDialogWindow, onClickToAddNewElements } from '../../../state/mySurveys/createNewSetOfQuestions'
 import RaisedButton from 'material-ui/RaisedButton';
 import DialogWindowToRenderInside from './DialogWindowToRenderInside'
 
@@ -20,7 +20,7 @@ class DialogWithElementsOfSurvey extends React.Component {
             label="ADD ELEMENT"
             secondary={true}
             style={style}
-            onClick={() => {this.props._addNewElementsToSetOfQuestiones()}}
+            onClick={() => {this.props._onClickToAddNewElements()}}
         />
     ];
 
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
-    _addNewElementsToSetOfQuestiones: () => dispatch(addNewElementsToSetOfQuestiones())
+    _onClickToAddNewElements: () => dispatch(onClickToAddNewElements())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogWithElementsOfSurvey)

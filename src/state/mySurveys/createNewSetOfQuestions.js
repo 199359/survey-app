@@ -22,6 +22,13 @@ export const addNewElementsToSetOfQuestiones = () => ({
     type: ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES
 })
 
+export const onClickToAddNewElements = () => {
+    return dispatch => { 
+    dispatch(addNewElementsToSetOfQuestiones()),
+    dispatch(toggleDialogWindow())
+    }
+}
+
 
 const initialState = {
     isDialogWindowOpen: false,
