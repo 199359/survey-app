@@ -21,7 +21,7 @@ const max = 15
 
 class CreateNewSetOfQuestions extends React.Component {
     state = {
-        slider: 2,
+        slider: 7,
     }
 
     handleSlider = (event, value) => {
@@ -62,21 +62,24 @@ class CreateNewSetOfQuestions extends React.Component {
                                             <CustomTextField
                                                 floatingLabelText='Type your question...'
                                             />
-                                            <FlatButton
-                                                label="ADD"
-                                            />
-                                            <TrashIcon />
-                                            <Slider
-                                                min={min}
-                                                max={max}
-                                                step={max / 100}
-                                                value={this.state.slider}
-                                                onChange={this.handleSlider}
-                                            />
+                                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                                <Slider
+                                                    min={min}
+                                                    max={max}
+                                                    step={max / 100}
+                                                    value={this.state.slider}
+                                                    onChange={this.handleSlider}
+                                                    style={{ width: '60%' }}
+                                                />
+                                            </div>
                                             <p>
                                                 <span>{'The range of scale for this question is: '}</span>
                                                 <span>{this.state.slider}</span>
                                             </p>
+                                            <FlatButton
+                                                label="ADD"
+                                            />
+                                            <TrashIcon />
                                         </div>
                                         :
                                         ''
