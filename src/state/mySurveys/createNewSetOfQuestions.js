@@ -1,5 +1,6 @@
 const TOGGLE_DIALOG_WINDOW = 'createNewSetOfQuestiones/TOGGLE_DIALOG_WINDOW'
 const VALUE_OF_DROPDOWN_MENU_IN_DIALOG = 'createNewSetOfQuestiones/VALUE_OF_DROPDOWN_MENU_IN_DIALOG'
+const REMOVE_ELEMENT_FROM_DIALOG = 'createNewSetOfQuestiones/REMOVE_ELEMENT_FROM_DIALOG'
 
 
 export const toggleDialogWindow = () => ({
@@ -9,6 +10,11 @@ export const toggleDialogWindow = () => ({
 export const onChanegeValueOfDropdownMenuInDialog = (value) => ({
     type: VALUE_OF_DROPDOWN_MENU_IN_DIALOG,
     value
+})
+
+export const onRemoveElementFromDialogClick = (key) => ({
+    type: REMOVE_ELEMENT_FROM_DIALOG,
+    key
 })
 
 const initialState = {
@@ -42,6 +48,13 @@ export default (state = initialState, action) => {
                     key: i,
                     elementName: state.availableElements[el.elementId]
                 }
+            })
+        }
+        case REMOVE_ELEMENT_FROM_DIALOG:
+        return {
+            ...state,
+            choosenValues: state.choosenValues.filter((el)=>{
+                return el.elementName !== action.key
             })
         }
         default:

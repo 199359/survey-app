@@ -1,24 +1,39 @@
 import React from 'react'
 import Chip from 'material-ui/Chip';
+import { connect } from 'react-redux'
+import {onRemoveElementFromDialogClick} from '../../../../state/mySurveys/createNewSetOfQuestions'
 
-const styles = {
-    chip: {
-        margin: 4,
-    },
-    wrapper: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-};
 
-const Element = (props) => (
+class Element extends React.Component {
+    styles = {
+        chip: {
+            margin: 4,
+        },
+        wrapper: {
+            display: 'flex',
+            flexWrap: 'wrap',
+        },
+    }
+
+    render() {
+        return (
         <Chip
-            key={props.key}
-            onRequestDelete={() => this.handleRequestDelete()}
-            style={styles.chip}
+            key={this.props.key}
+            onRequestDelete={() =>  this.props._onRemoveElementFromDialogClick(this.props.elementName)}
+            style={this.styles.chip}
         >
-            {props.elementName}
+            {this.props.elementName}
         </Chip>
-)
+        )
+    }
+}
 
-export default Element
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+    _onRemoveElementFromDialogClick: (key) => dispatch(onRemoveElementFromDialogClick(key))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Element)

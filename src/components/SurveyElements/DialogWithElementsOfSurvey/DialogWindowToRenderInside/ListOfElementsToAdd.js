@@ -19,7 +19,6 @@ const ListOfElementsToRender = (props) => (
 const mapStateToProps = state => ({
     _choosenValues: state.createNewSetOfQuestiones.choosenValues,
     _availableElements: state.createNewSetOfQuestiones.availableElements
-
 })
 
 const mapDispatchToProps = dispatch => ({
