@@ -6,7 +6,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { TrashIcon } from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
-import { toggleDialogWindow } from '../../../state/createNewSetOfQuestions'
+import { toggleDialogWindow } from '../../../state/mySurveys/createNewSetOfQuestions'
 import DialogWithElementsOfSurvey from '../../../components/SurveyElements/DialogWithElementsOfSurvey'
 
 const style = {

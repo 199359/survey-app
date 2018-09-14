@@ -1,7 +1,7 @@
 import React from 'react'
 import Dialog from 'material-ui/Dialog';
 import { connect } from 'react-redux'
-import { toggleDialogWindow } from '../../../state/createNewSetOfQuestions'
+import { toggleDialogWindow } from '../../../state/mySurveys/createNewSetOfQuestions'
 import RaisedButton from 'material-ui/RaisedButton';
 import DialogWindowToRenderInside from './DialogWindowToRenderInside'
 
@@ -26,7 +26,7 @@ class DialogWithElementsOfSurvey extends React.Component {
         return (
             <div>
                 <Dialog
-                    title="Choose new element"
+                    title="Choose new elements"
                     actions={this.actions}
                     modal={false}
                     open={this.props._isDialogWindowOpen}

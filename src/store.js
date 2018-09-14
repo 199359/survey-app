@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import navigation from './state/navigation'
-import createNewSetOfQuestiones from './state/createNewSetOfQuestions'
+import createNewSetOfQuestiones from './state/mySurveys/createNewSetOfQuestions'
 import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
