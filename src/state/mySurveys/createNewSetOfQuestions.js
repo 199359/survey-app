@@ -1,6 +1,7 @@
 const TOGGLE_DIALOG_WINDOW = 'createNewSetOfQuestiones/TOGGLE_DIALOG_WINDOW'
 const VALUE_OF_DROPDOWN_MENU_IN_DIALOG = 'createNewSetOfQuestiones/VALUE_OF_DROPDOWN_MENU_IN_DIALOG'
 const REMOVE_ELEMENT_FROM_DIALOG = 'createNewSetOfQuestiones/REMOVE_ELEMENT_FROM_DIALOG'
+const ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES'
 
 
 export const toggleDialogWindow = () => ({
@@ -17,11 +18,17 @@ export const onRemoveElementFromDialogClick = (key) => ({
     key
 })
 
+export const addNewElementsToSetOfQuestiones = () => ({
+    type: ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES
+})
+
+
 const initialState = {
     isDialogWindowOpen: false,
     valueOfDropdownMenuInDialog: 1,
     choosenValues: [],
-    availableElements: ['Text Field', 'Scale']
+    availableElements: ['Text Field', 'Scale'],
+    elementsToSetOfQuestions: []
 }
 
 export default (state = initialState, action) => {
@@ -46,7 +53,7 @@ export default (state = initialState, action) => {
                 return {
                     ...el,
                     key: i,
-                    elementName: state.availableElements[el.elementId]
+                    elementName: `${i+1} ${state.availableElements[el.elementId]}`
                 }
             })
         }
@@ -55,7 +62,17 @@ export default (state = initialState, action) => {
             ...state,
             choosenValues: state.choosenValues.filter((el)=>{
                 return el.elementName !== action.key
+            }).map((el, i)=> {
+                return {
+                    ...el,
+                    elementName: `${i+1} ${state.availableElements[el.elementId]}`
+                }
             })
+        }
+        case ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES:
+        return {
+            ...state,
+            elementsToSetOfQuestions: state.elementsToSetOfQuestions.concat(state.choosenValues)
         }
         default:
         return state
