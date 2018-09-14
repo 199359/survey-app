@@ -24,8 +24,8 @@ class DialogWindowToRenderInside extends React.Component {
                     style={styles.customWidth}
                     autoWidth={false}
                 >
-                    <MenuItem value={1} primaryText="Text field" />
-                    <MenuItem value={2} primaryText="Scale" />
+                    <MenuItem value={0} primaryText={this.props._availableElements[0]} />
+                    <MenuItem value={1} primaryText={this.props._availableElements[1]} />
                 </DropDownMenu>
             </div >
         )
@@ -33,7 +33,8 @@ class DialogWindowToRenderInside extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    _valueOfDropdownMenuInDialog: state.createNewSetOfQuestiones.valueOfDropdownMenuInDialog
+    _valueOfDropdownMenuInDialog: state.createNewSetOfQuestiones.valueOfDropdownMenuInDialog,
+    _availableElements: state.createNewSetOfQuestiones.availableElements
 })
 
 const mapDispatchToProps = dispatch => ({

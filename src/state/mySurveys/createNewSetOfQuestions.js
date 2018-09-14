@@ -14,7 +14,8 @@ export const onChanegeValueOfDropdownMenuInDialog = (value) => ({
 const initialState = {
     isDialogWindowOpen: false,
     valueOfDropdownMenuInDialog: 1,
-    choosenValues: []
+    choosenValues: [],
+    availableElements: ['Text Field', 'Scale']
 }
 
 export default (state = initialState, action) => {
@@ -24,6 +25,7 @@ export default (state = initialState, action) => {
             ...state,
             isDialogWindowOpen: !state.isDialogWindowOpen,
             valueOfDropdownMenuInDialog: 1,
+            choosenValues: []
         }
         case VALUE_OF_DROPDOWN_MENU_IN_DIALOG:
         return {
@@ -31,13 +33,14 @@ export default (state = initialState, action) => {
             valueOfDropdownMenuInDialog: action.value,
             choosenValues: state.choosenValues.concat([action.value].map((el, i)=>{
                 return {
-                    label: el
+                    elementId: el
                 }
             })
             ).map((el, i)=>{
                 return {
                     ...el,
-                    key: i
+                    key: i,
+                    elementName: state.availableElements[el.elementId]
                 }
             })
         }
