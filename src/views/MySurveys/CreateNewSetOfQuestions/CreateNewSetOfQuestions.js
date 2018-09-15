@@ -15,6 +15,7 @@ import DialogWithElementsOfSurvey from '../../../components/SurveyElements/Dialo
 import FlatButton from 'material-ui/FlatButton'
 import Slider from 'material-ui/Slider'
 import TextFieldForSetName from '../../../components/SurveyElements/TextFieldForSetName'
+import { onClickCreateNewSetOfQuestions } from '../../../state/mySurveys/createNewSetOfQuestions'
 
 
 const style = {
@@ -127,9 +128,17 @@ class CreateNewSetOfQuestions extends React.Component {
                     <Link
                         to={'/my-surveys/'}
                     >
-                        <RaisedButton className='create_new_set_of_questions create_new_set_of_questions-cancel_button' label="CANCEL" style={style} />
+                        <RaisedButton
+                            className='create_new_set_of_questions create_new_set_of_questions-cancel_button'
+                            label="CANCEL"
+                            style={style} />
                     </Link>
-                    <RaisedButton className='create_new_set_of_questions create_new_set_of_questions-create_button' secondary={true} label="CREATE" />
+                    <RaisedButton
+                        className='create_new_set_of_questions create_new_set_of_questions-create_button'
+                        secondary={true}
+                        onClick={() => this.props._onClickCreateNewSetOfQuestions()}
+                        label="CREATE"
+                    />
                 </div>
             </div>
         )
@@ -138,13 +147,14 @@ class CreateNewSetOfQuestions extends React.Component {
 
 const mapStateToProps = state => ({
     _isDialogWindowOpen: state.createNewSetOfQuestiones.isDialogWindowOpen,
-    _elementsToSetOfQuestions: state.createNewSetOfQuestiones.elementsToSetOfQuestions
+    _elementsToSetOfQuestions: state.createNewSetOfQuestiones.elementsToSetOfQuestions,
 })
 
 const mapDispatchToProps = dispatch => ({
     _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
     _addNewTextFieldToSetOfQuestions: (key) => dispatch(addNewTextFieldToSetOfQuestions(key)),
-    _onQuestionTextChange: (text, key) => dispatch(onQuestionTextChange(text, key))
+    _onQuestionTextChange: (text, key) => dispatch(onQuestionTextChange(text, key)),
+    _onClickCreateNewSetOfQuestions: () => dispatch(onClickCreateNewSetOfQuestions())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNewSetOfQuestions)

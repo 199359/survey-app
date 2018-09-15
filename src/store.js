@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 
 const reducer = combineReducers({
     navigation,
-    createNewSetOfQuestiones
+    createNewSetOfQuestiones,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
