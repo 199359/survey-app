@@ -8,6 +8,12 @@ class TextFieldForSetName extends React.Component {
         inputValue: ''
     }
 
+    componentWillMount(){
+        this.setState({
+            inputValue: ''
+        })
+    }
+
     updateInputValue = (event) => {
         this.setState({
             inputValue: event.target.value

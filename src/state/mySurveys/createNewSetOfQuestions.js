@@ -6,10 +6,16 @@ const ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS = 'createNewSetOfQuestiones/ADD_NEW
 const REMOVE_PROJECT_OF_TEXT_FIELD = 'createNewSetOfQuestiones/REMOVE_PROJECT_OF_TEXT_FIELD'
 const ON_QUESTION_TEXT_CHANGE = 'createNewSetOfQuestiones/ON_QUESTION_TEXT_CHANGE'
 const HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT = 'createNewSetOfQuestiones/HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT'
-const ON_CLICK_CREATE_NEW_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/ON_CLICK_CREATE_NEW_SET_OF_QUESTIONES'
+const CREATE_NEW_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/CREATE_NEW_SET_OF_QUESTIONES'
 
-export const onClickCreateNewSetOfQuestions = (name, elements) => ({
-    type: ON_CLICK_CREATE_NEW_SET_OF_QUESTIONES,
+export const onClickCreateNewSetOfQuestions = () => {
+    return dispatch => {
+        dispatch(CreateNewSetOfQuestions())
+    }
+}
+
+export const CreateNewSetOfQuestions = () => ({
+    type: CREATE_NEW_SET_OF_QUESTIONES,
 })
 
 export const toggleDialogWindow = () => ({
@@ -72,11 +78,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case ON_CLICK_CREATE_NEW_SET_OF_QUESTIONES:
+        case CREATE_NEW_SET_OF_QUESTIONES:
         const newElement = {[state.nameOfTheSet]: state.elementsToSetOfQuestions }
             return {
                 ...state,
                 mySetsOfQuestiones: Object.assign({}, state.mySetsOfQuestiones, newElement),
+                elementsToSetOfQuestions: initialState.elementsToSetOfQuestions,
+                nameOfTheSet: initialState.nameOfTheSet
             }
         case TOGGLE_DIALOG_WINDOW:
             return {

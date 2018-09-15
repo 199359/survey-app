@@ -133,12 +133,17 @@ class CreateNewSetOfQuestions extends React.Component {
                             label="CANCEL"
                             style={style} />
                     </Link>
-                    <RaisedButton
-                        className='create_new_set_of_questions create_new_set_of_questions-create_button'
-                        secondary={true}
-                        onClick={() => this.props._onClickCreateNewSetOfQuestions()}
-                        label="CREATE"
-                    />
+                    <Link
+                        to={'/my-surveys/'}
+                    >
+                        <RaisedButton
+                            className='create_new_set_of_questions create_new_set_of_questions-create_button'
+                            secondary={true}
+                            onClick={() => this.props._onClickCreateNewSetOfQuestions()}
+                            label="CREATE"
+                        />
+                    </Link>
+
                 </div>
             </div>
         )
