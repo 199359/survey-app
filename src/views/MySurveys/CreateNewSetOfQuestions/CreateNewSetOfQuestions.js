@@ -14,6 +14,7 @@ import {
 import DialogWithElementsOfSurvey from '../../../components/SurveyElements/DialogWithElementsOfSurvey'
 import FlatButton from 'material-ui/FlatButton'
 import Slider from 'material-ui/Slider'
+import TextFieldForSetName from '../../../components/SurveyElements/TextFieldForSetName'
 
 
 const style = {
@@ -37,7 +38,7 @@ class CreateNewSetOfQuestions extends React.Component {
             <div className='CreateNewSetOfQuestions-container'>
                 <div>
                     <form>
-                        <CustomTextField
+                        <TextFieldForSetName
                             floatingLabelText='Name of new set of questions...'
                         />
                         <a onClick={() => alert('tash')} hoverColor='red100'>
@@ -49,10 +50,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                     {el.isQuestionCompleted === true
                                         ?
                                         <div>
-                                            <p>{`Question ${i + 1}: ${el.questionText} `}</p>
-                                            <CustomTextField
-                                                floatingLabelText='Field for answer... '
-                                            />
+                                            {`Question ${i + 1}: ${el.questionText} `}
                                             <TrashIcon
                                                 keyValue={el.elementName}
                                             />
@@ -62,7 +60,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                             {el.elementId === 0
                                                 ?
                                                 <div>
-                                                    <p>{`Edit question ${i + 1} below. `}</p>
+                                                    <p>{`Edit question ${i + 1}`}</p>
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
                                                         inputQuestionTextFieldKey={i}
@@ -82,7 +80,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                             {el.elementId === 1
                                                 ?
                                                 <div>
-                                                    <p>{`Edit question ${i + 1} below. `}</p>
+                                                    <p>{`Edit question ${i + 1}`}</p>
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
                                                     />

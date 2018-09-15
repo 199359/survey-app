@@ -5,6 +5,7 @@ const ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/ADD_NEW_
 const ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS = 'createNewSetOfQuestiones/ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS'
 const REMOVE_PROJECT_OF_TEXT_FIELD = 'createNewSetOfQuestiones/REMOVE_PROJECT_OF_TEXT_FIELD'
 const ON_QUESTION_TEXT_CHANGE = 'createNewSetOfQuestiones/ON_QUESTION_TEXT_CHANGE'
+const HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT = 'createNewSetOfQuestiones/HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT'
 
 export const toggleDialogWindow = () => ({
     type: TOGGLE_DIALOG_WINDOW
@@ -47,12 +48,18 @@ export const removeProjectOfTextField = (key) => ({
     key
 })
 
+export const handleNameOfTheInput = (text) => ({
+    type: HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT,
+    text
+})
+
 const initialState = {
     isDialogWindowOpen: false,
     valueOfDropdownMenuInDialog: 1,
     choosenValues: [],
     availableElements: ['Text Field', 'Scale'],
     elementsToSetOfQuestions: [],
+    nameOfTheSet: ''
 }
 
 export default (state = initialState, action) => {
@@ -139,6 +146,11 @@ export default (state = initialState, action) => {
                 elementsToSetOfQuestions: state.elementsToSetOfQuestions.filter(el => {
                     return el.elementName !== action.key
                 })
+            }
+            case HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT:
+            return {
+                ...state,
+                nameOfTheSet: action.text
             }
         default:
             return state
