@@ -6,7 +6,11 @@ import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
 import { TrashIcon } from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
-import { toggleDialogWindow, addNewTextFieldToSetOfQuestions } from '../../../state/mySurveys/createNewSetOfQuestions'
+import {
+    toggleDialogWindow,
+    addNewTextFieldToSetOfQuestions,
+    onQuestionTextChange
+} from '../../../state/mySurveys/createNewSetOfQuestions'
 import DialogWithElementsOfSurvey from '../../../components/SurveyElements/DialogWithElementsOfSurvey'
 import FlatButton from 'material-ui/FlatButton'
 import Slider from 'material-ui/Slider'
@@ -42,59 +46,67 @@ class CreateNewSetOfQuestions extends React.Component {
                         {this.props._elementsToSetOfQuestions.map((el, i, arr) => {
                             return (
                                 <div>
-                                    {el.isQuestionCompleted === true 
-                                        ? 
+                                    {el.isQuestionCompleted === true
+                                        ?
                                         <div>
-                                            Completed
-                                        </div> 
-                                        : 
+                                            <p>{`This is question ${i}: `}</p>
+                                            <CustomTextField
+                                                floatingLabelText='Your question'
+                                            />
+                                            <TrashIcon />
+                                        </div>
+                                        :
                                         <div>
                                             {el.elementId === 0
-                                        ?
-                                        <div>
-                                            <CustomTextField
-                                                floatingLabelText='Type your question...'
-                                            />
-                                            <FlatButton
-                                                label="ADD"
-                                                onClick={() => this.props._addNewTextFieldToSetOfQuestions()}
-                                            />
-                                            <TrashIcon />
+                                                ?
+                                                <div>
+                                                    <p>{`Edit question ${i} below. `}</p>
+                                                    <CustomTextField
+                                                        floatingLabelText='Type your question...'
+                                                        inputQuestionTextFieldKey={i}
+                                                        // _onQuestionTextChange={(inputQuestionTextFieldKey) => this.props._onQuestionTextChange(inputQuestionTextFieldKey)}
+                                                    />
+                                                    <FlatButton
+                                                        label="ADD"
+                                                        onClick={() => this.props._addNewTextFieldToSetOfQuestions(i)}
+                                                    />
+                                                    <TrashIcon />
+                                                </div>
+                                                :
+                                                ''
+                                            }
+                                            {el.elementId === 1
+                                                ?
+                                                <div>
+                                                    <p>{`Edit question ${i} below. `}</p>
+                                                    <CustomTextField
+                                                        floatingLabelText='Type your question...'
+                                                    />
+                                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                                        <Slider
+                                                            min={min}
+                                                            max={max}
+                                                            step={max / 100}
+                                                            value={this.state.slider}
+                                                            onChange={this.handleSlider}
+                                                            style={{ width: '60%' }}
+                                                        />
+                                                    </div>
+                                                    <p>
+                                                        <span>{'The range of scale for this question is: '}</span>
+                                                        <span>{this.state.slider}</span>
+                                                    </p>
+                                                    <FlatButton
+                                                        label="ADD"
+                                                    />
+                                                    <TrashIcon />
+                                                </div>
+                                                :
+                                                ''
+                                            }
                                         </div>
-                                        :
-                                        ''
                                     }
-                                    {el.elementId === 1
-                                        ?
-                                        <div>
-                                            <CustomTextField
-                                                floatingLabelText='Type your question...'
-                                            />
-                                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                                <Slider
-                                                    min={min}
-                                                    max={max}
-                                                    step={max / 100}
-                                                    value={this.state.slider}
-                                                    onChange={this.handleSlider}
-                                                    style={{ width: '60%' }}
-                                                />
-                                            </div>
-                                            <p>
-                                                <span>{'The range of scale for this question is: '}</span>
-                                                <span>{this.state.slider}</span>
-                                            </p>
-                                            <FlatButton
-                                                label="ADD"
-                                            />
-                                            <TrashIcon />
-                                        </div>
-                                        :
-                                        ''
-                                    }
-                                        </div>
-                                    }
-                                    
+
                                     <hr />
                                 </div>
                             )
@@ -128,7 +140,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
-    _addNewTextFieldToSetOfQuestions: () => dispatch(addNewTextFieldToSetOfQuestions())
+    _addNewTextFieldToSetOfQuestions: (key) => dispatch(addNewTextFieldToSetOfQuestions(key)),
+    _onQuestionTextChange: (text) => dispatch(onQuestionTextChange(text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNewSetOfQuestions)
