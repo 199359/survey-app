@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { Link } from 'react-router-dom'
 import FloatingActionButton from 'material-ui/FloatingActionButton'
 import ContentAdd from 'material-ui/svg-icons/content/add'
-import { TrashIcon } from '../../../icons/TrashIcon'
+import TrashIcon from '../../../icons/TrashIcon'
 import CustomTextField from '../../../components/SurveyElements/CustomTextField'
 import {
     toggleDialogWindow,
@@ -49,18 +49,20 @@ class CreateNewSetOfQuestions extends React.Component {
                                     {el.isQuestionCompleted === true
                                         ?
                                         <div>
-                                            <p>{`This is question ${i}: `}</p>
+                                            <p>{`Question ${i + 1}: ${el.questionText} `}</p>
                                             <CustomTextField
-                                                floatingLabelText='Your question: '
+                                                floatingLabelText='Field for answer... '
                                             />
-                                            <TrashIcon />
+                                            <TrashIcon
+                                                keyValue={el.elementName}
+                                            />
                                         </div>
                                         :
                                         <div>
                                             {el.elementId === 0
                                                 ?
                                                 <div>
-                                                    <p>{`Edit question ${i} below. `}</p>
+                                                    <p>{`Edit question ${i + 1} below. `}</p>
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
                                                         inputQuestionTextFieldKey={i}
@@ -70,7 +72,9 @@ class CreateNewSetOfQuestions extends React.Component {
                                                         label="ADD"
                                                         onClick={() => this.props._addNewTextFieldToSetOfQuestions(i)}
                                                     />
-                                                    <TrashIcon />
+                                                    <TrashIcon
+                                                        keyValue={el.elementName}
+                                                    />
                                                 </div>
                                                 :
                                                 ''
@@ -78,7 +82,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                             {el.elementId === 1
                                                 ?
                                                 <div>
-                                                    <p>{`Edit question ${i} below. `}</p>
+                                                    <p>{`Edit question ${i + 1} below. `}</p>
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
                                                     />
@@ -99,7 +103,9 @@ class CreateNewSetOfQuestions extends React.Component {
                                                     <FlatButton
                                                         label="ADD"
                                                     />
-                                                    <TrashIcon />
+                                                    <TrashIcon
+                                                        keyValue={el.elementName}
+                                                    />
                                                 </div>
                                                 :
                                                 ''

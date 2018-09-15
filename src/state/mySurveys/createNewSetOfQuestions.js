@@ -3,6 +3,7 @@ const VALUE_OF_DROPDOWN_MENU_IN_DIALOG = 'createNewSetOfQuestiones/VALUE_OF_DROP
 const REMOVE_ELEMENT_FROM_DIALOG = 'createNewSetOfQuestiones/REMOVE_ELEMENT_FROM_DIALOG'
 const ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES'
 const ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS = 'createNewSetOfQuestiones/ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS'
+const REMOVE_PROJECT_OF_TEXT_FIELD = 'createNewSetOfQuestiones/REMOVE_PROJECT_OF_TEXT_FIELD'
 const ON_QUESTION_TEXT_CHANGE = 'createNewSetOfQuestiones/ON_QUESTION_TEXT_CHANGE'
 
 export const toggleDialogWindow = () => ({
@@ -38,6 +39,11 @@ export const addNewTextFieldToSetOfQuestions = (key) => ({
 export const onQuestionTextChange = (text, key) => ({
     type: ON_QUESTION_TEXT_CHANGE,
     text,
+    key
+})
+
+export const removeProjectOfTextField = (key) => ({
+    type: REMOVE_PROJECT_OF_TEXT_FIELD,
     key
 })
 
@@ -125,6 +131,13 @@ export default (state = initialState, action) => {
                     return {
                         ...el
                     }
+                })
+            }
+            case REMOVE_PROJECT_OF_TEXT_FIELD:
+            return {
+                ...state,
+                elementsToSetOfQuestions: state.elementsToSetOfQuestions.filter(el => {
+                    return el.elementName !== action.key
                 })
             }
         default:
