@@ -1,14 +1,29 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 
-const CustomTextField = (props) => (
-        <TextField
-            style={{ width: '70%' }}
-            floatingLabelText={props.floatingLabelText}
-            onChange={props._onQuestionTextChange}
-            key={props.inputQuestionTextFieldKey}
-            _onQuestionTextChange={() => this.props._onQuestionTextChange(props.inputQuestionTextFieldKey)}
-        />
-)
+class CustomTextField extends React.Component {
+    state = {
+        inputValue: ''
+    }
+
+    updateInputValue = (event) => {
+        this.setState({
+            inputValue: event.target.value
+        })
+        this.props._onQuestionTextChange(this.state.inputValue)
+    }
+
+    render() {
+        return (
+            <TextField
+                style={{ width: '70%' }}
+                value={this.state.inputValue}
+                floatingLabelText={this.props.floatingLabelText}
+                onChange={(event) => this.updateInputValue(event)}
+                key={this.props.inputQuestionTextFieldKey}
+            />
+        )
+    }
+}
 
 export default CustomTextField

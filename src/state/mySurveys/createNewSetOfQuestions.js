@@ -35,9 +35,10 @@ export const addNewTextFieldToSetOfQuestions = (key) => ({
     key
 })
 
-export const onQuestionTextChange = (text) => ({
+export const onQuestionTextChange = (text, key) => ({
     type: ON_QUESTION_TEXT_CHANGE,
-    text
+    text,
+    key
 })
 
 const initialState = {
@@ -115,9 +116,14 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 elementsToSetOfQuestions: state.elementsToSetOfQuestions.map((el, i, arr) => {
+                    if (el.key === action.key) {
+                        return {
+                            ...el,
+                            questionText: action.text
+                        }
+                    }
                     return {
-                        ...el,
-                        questionText: action.text,
+                        ...el
                     }
                 })
             }

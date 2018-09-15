@@ -51,7 +51,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                         <div>
                                             <p>{`This is question ${i}: `}</p>
                                             <CustomTextField
-                                                floatingLabelText='Your question'
+                                                floatingLabelText='Your question: '
                                             />
                                             <TrashIcon />
                                         </div>
@@ -64,7 +64,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
                                                         inputQuestionTextFieldKey={i}
-                                                        // _onQuestionTextChange={(inputQuestionTextFieldKey) => this.props._onQuestionTextChange(inputQuestionTextFieldKey)}
+                                                        _onQuestionTextChange={(text) => this.props._onQuestionTextChange(text, i)}
                                                     />
                                                     <FlatButton
                                                         label="ADD"
@@ -135,13 +135,12 @@ class CreateNewSetOfQuestions extends React.Component {
 const mapStateToProps = state => ({
     _isDialogWindowOpen: state.createNewSetOfQuestiones.isDialogWindowOpen,
     _elementsToSetOfQuestions: state.createNewSetOfQuestiones.elementsToSetOfQuestions
-
 })
 
 const mapDispatchToProps = dispatch => ({
     _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
     _addNewTextFieldToSetOfQuestions: (key) => dispatch(addNewTextFieldToSetOfQuestions(key)),
-    _onQuestionTextChange: (text) => dispatch(onQuestionTextChange(text))
+    _onQuestionTextChange: (text, key) => dispatch(onQuestionTextChange(text, key))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateNewSetOfQuestions)
