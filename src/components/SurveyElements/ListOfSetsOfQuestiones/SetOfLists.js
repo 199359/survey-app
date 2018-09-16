@@ -6,10 +6,15 @@ import {connect} from 'react-redux'
 
 const SetOfLists = (props) => (
     <List>
+    {Object.entries(props._mySetsOfQuestiones).length ? '' : <p>Nothing to display</p>}
+    {Object.entries(props._mySetsOfQuestiones).map((el, i, arr)=> {
+        return (
             <ListOfSetsOfQuestiones
-            primaryText='Template of task'
-            secondaryText='Number of questions: 4'
+            primaryText={`${el[0]}`}
+            secondaryText={`Number of questions: ${el[1].length}`}
             />
+        )
+    })}
     </List>
 )
 
