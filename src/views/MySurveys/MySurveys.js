@@ -1,7 +1,7 @@
 import React from 'react'
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom'
-
+import ListOfSetsOfQuestiones from '../../components/SurveyElements/ListOfSetsOfQuestiones'
 
 class MySurveys extends React.Component {
     render() {
@@ -17,6 +17,7 @@ class MySurveys extends React.Component {
                 >
                     <RaisedButton className='my_surveys-menu_option_button' label="PREVIEW MY SETS OF QUESTIONS" />
                 </Link>
+                <ListOfSetsOfQuestiones />
             </div>
         )
     }

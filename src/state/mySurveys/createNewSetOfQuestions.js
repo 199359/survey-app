@@ -73,7 +73,7 @@ const initialState = {
     availableElements: ['Text Field', 'Scale'],
     elementsToSetOfQuestions: [],
     nameOfTheSet: '',
-    mySetsOfQuestiones: {}
+    mySetsOfQuestiones: []
 }
 
 export default (state = initialState, action) => {
