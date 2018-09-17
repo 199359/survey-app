@@ -9,7 +9,7 @@
     storageBucket: "survey-app-3f3ac.appspot.com",
     messagingSenderId: "379833203724"
   };
-  firebase.initializeApp(config);
+  firebase.initializeApp(config)
 
   export const database = firebase.database()
   export const auth = firebase.auth()

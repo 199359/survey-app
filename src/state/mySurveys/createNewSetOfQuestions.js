@@ -1,3 +1,5 @@
+import { database } from '../../firebaseConfig'
+
 const TOGGLE_DIALOG_WINDOW = 'createNewSetOfQuestiones/TOGGLE_DIALOG_WINDOW'
 const VALUE_OF_DROPDOWN_MENU_IN_DIALOG = 'createNewSetOfQuestiones/VALUE_OF_DROPDOWN_MENU_IN_DIALOG'
 const REMOVE_ELEMENT_FROM_DIALOG = 'createNewSetOfQuestiones/REMOVE_ELEMENT_FROM_DIALOG'
@@ -7,6 +9,8 @@ const REMOVE_PROJECT_OF_TEXT_FIELD = 'createNewSetOfQuestiones/REMOVE_PROJECT_OF
 const ON_QUESTION_TEXT_CHANGE = 'createNewSetOfQuestiones/ON_QUESTION_TEXT_CHANGE'
 const HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT = 'createNewSetOfQuestiones/HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT'
 const CREATE_NEW_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/CREATE_NEW_SET_OF_QUESTIONES'
+
+
 
 export const onClickCreateNewSetOfQuestions = () => {
     return dispatch => {
@@ -64,7 +68,14 @@ export const handleNameOfTheInput = (text) => ({
     text
 })
 
-
+export const initChannelsSync = () => (dispatch, getState) => {
+    database.ref('/chanels/').on(
+        'value',
+        snapshot => {
+            const data = snapshot.val() || {}
+        }
+    )
+}
 
 const initialState = {
     isDialogWindowOpen: false,
