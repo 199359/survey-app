@@ -9,7 +9,7 @@ const REMOVE_PROJECT_OF_TEXT_FIELD = 'createNewSetOfQuestiones/REMOVE_PROJECT_OF
 const ON_QUESTION_TEXT_CHANGE = 'createNewSetOfQuestiones/ON_QUESTION_TEXT_CHANGE'
 const HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT = 'createNewSetOfQuestiones/HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT'
 const CREATE_NEW_SET_OF_QUESTIONES = 'createNewSetOfQuestiones/CREATE_NEW_SET_OF_QUESTIONES'
-
+const SET = 'SET'
 
 
 export const onClickCreateNewSetOfQuestions = () => {
@@ -68,14 +68,12 @@ export const handleNameOfTheInput = (text) => ({
     text
 })
 
-export const initChannelsSync = () => (dispatch, getState) => {
-    database.ref('/chanels/').on(
-        'value',
-        snapshot => {
-            const data = snapshot.val() || {}
-        }
-    )
-}
+export const initChannelsSync = (data) => (dispatch, getState) => (
+    database.ref(`/myQuestions`).push({
+        data: getState().createNewSetOfQuestiones.mySetsOfQuestiones
+    })
+)
+
 
 const initialState = {
     isDialogWindowOpen: false,
@@ -90,7 +88,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case CREATE_NEW_SET_OF_QUESTIONES:
-        const newElement = {[state.nameOfTheSet]: state.elementsToSetOfQuestions }
+            const newElement = { [state.nameOfTheSet]: state.elementsToSetOfQuestions }
             return {
                 ...state,
                 mySetsOfQuestiones: Object.assign({}, state.mySetsOfQuestiones, newElement),
@@ -137,8 +135,9 @@ export default (state = initialState, action) => {
         case ADD_NEW_ELEMENTS_TO_SET_OF_QUESTIONES:
             return {
                 ...state,
-                elementsToSetOfQuestions: state.elementsToSetOfQuestions.concat(state.choosenValues).map((el, i)=> {
-                    return { ...el,
+                elementsToSetOfQuestions: state.elementsToSetOfQuestions.concat(state.choosenValues).map((el, i) => {
+                    return {
+                        ...el,
                         key: i
                     }
                 })
@@ -173,14 +172,14 @@ export default (state = initialState, action) => {
                     }
                 })
             }
-            case REMOVE_PROJECT_OF_TEXT_FIELD:
+        case REMOVE_PROJECT_OF_TEXT_FIELD:
             return {
                 ...state,
                 elementsToSetOfQuestions: state.elementsToSetOfQuestions.filter(el => {
                     return el.elementName !== action.key
                 })
             }
-            case HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT:
+        case HANDLE_ON_CHANGE_NAME_OF_THE_SET_INPUT:
             return {
                 ...state,
                 nameOfTheSet: action.text
