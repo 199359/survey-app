@@ -47,9 +47,10 @@ export const onClickToAddNewElements = () => {
     }
 }
 
-export const addNewTextFieldToSetOfQuestions = (key) => ({
+export const addNewTextFieldToSetOfQuestions = (key, slider) => ({
     type: ADD_NEW_TEXT_FIELD_TO_SET_OF_QUESTIONS,
-    key
+    key,
+    slider
 })
 
 export const onQuestionTextChange = (text, key) => ({
@@ -149,7 +150,8 @@ export default (state = initialState, action) => {
                     if (el.key === action.key) {
                         return {
                             ...el,
-                            isQuestionCompleted: true
+                            isQuestionCompleted: true,
+                            slider: action.slider
                         }
                     }
                     return {

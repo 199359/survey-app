@@ -69,7 +69,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                                     />
                                                     <FlatButton
                                                         label="ADD"
-                                                        onClick={() => this.props._addNewTextFieldToSetOfQuestions(i)}
+                                                        onClick={() => this.props._addNewTextFieldToSetOfQuestions(i, 0)}
                                                     />
                                                     <TrashIcon
                                                         keyValue={el.elementName}
@@ -84,6 +84,8 @@ class CreateNewSetOfQuestions extends React.Component {
                                                     <p>{`Edit question ${i + 1}`}</p>
                                                     <CustomTextField
                                                         floatingLabelText='Type your question...'
+                                                        inputQuestionTextFieldKey={i}
+                                                        _onQuestionTextChange={(text) => this.props._onQuestionTextChange(text, i)}
                                                     />
                                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                                         <Slider
@@ -101,6 +103,7 @@ class CreateNewSetOfQuestions extends React.Component {
                                                     </p>
                                                     <FlatButton
                                                         label="ADD"
+                                                        onClick={() => this.props._addNewTextFieldToSetOfQuestions(i, this.state.slider)}
                                                     />
                                                     <TrashIcon
                                                         keyValue={el.elementName}
@@ -157,7 +160,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     _toggleDialogWindow: () => dispatch(toggleDialogWindow()),
-    _addNewTextFieldToSetOfQuestions: (key) => dispatch(addNewTextFieldToSetOfQuestions(key)),
+    _addNewTextFieldToSetOfQuestions: (key, slider) => dispatch(addNewTextFieldToSetOfQuestions(key, slider)),
     _onQuestionTextChange: (text, key) => dispatch(onQuestionTextChange(text, key)),
     _onClickCreateNewSetOfQuestions: () => dispatch(onClickCreateNewSetOfQuestions())
 })
