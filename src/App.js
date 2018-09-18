@@ -7,8 +7,6 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import CreateNewReseatch from './views/CreateNewResearch'
 import GroupOfUsers from './views/GroupOfUsers'
 import MySurveys from './views/MySurveys'
-import { Provider } from 'react-redux'
-import { store } from './store'
 import CreateNewSetOfQuestions from './views/MySurveys/CreateNewSetOfQuestions'
 import PreviewMySetOfQuestions from './views/MySurveys/PreviewMySetOfQuestions'
 
@@ -18,7 +16,6 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
         <BrowserRouter>
           <div className="App">
             <Navigation />
@@ -30,7 +27,6 @@ class App extends Component {
             <Route path={'/preview-my-set-of-questions/'} exact component={PreviewMySetOfQuestions} />
           </div>
         </BrowserRouter>
-      </Provider>
     );
   }
 }

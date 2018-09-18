@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../../components/Navigation/Sidebar'
 import Navbar from '../../components/Navigation/Navbar'
-
+import {connect} from 'react-redux'
 
 const Navigation = (props) => (
 
@@ -14,8 +14,16 @@ const Navigation = (props) => (
             isSideBarShowed={props._isSideBarShowed}
             handleToggleButton={props._handleToggleButton}
         />
+
     </div>
 )
 
+const mapStateToProps = state => ({
 
-export default Navigation
+})
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
