@@ -3,12 +3,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom'
 import ListOfSetsOfQuestiones from '../../components/SurveyElements/ListOfSetsOfQuestiones'
 import {connect} from 'react-redux'
-import {initChannelsSync} from '../../state/mySurveys/createNewSetOfQuestions'
+import {initQuestionsSync} from '../../state/mySurveys/createNewSetOfQuestions'
 
 class MySurveys extends React.Component {
     componentWillMount(){
         console.log(this.props._mySetsOfQuestiones)
-        this.props._initChannelsSync(this.props._mySetsOfQuestiones)
+        this.props._initQuestionsSync(this.props._mySetsOfQuestiones)
     }
 
     render() {
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    _initChannelsSync: () => dispatch(initChannelsSync())
+    _initQuestionsSync: () => dispatch(initQuestionsSync())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MySurveys)

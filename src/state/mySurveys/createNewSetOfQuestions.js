@@ -68,7 +68,7 @@ export const handleNameOfTheInput = (text) => ({
     text
 })
 
-export const initChannelsSync = (data) => (dispatch, getState) => (
+export const initQuestionsSync = (data) => (dispatch, getState) => (
     database.ref(`/myQuestions`).push({
         data: getState().createNewSetOfQuestiones.mySetsOfQuestiones
     })
