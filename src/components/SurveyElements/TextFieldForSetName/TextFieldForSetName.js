@@ -18,7 +18,7 @@ class TextFieldForSetName extends React.Component {
         this.setState({
             inputValue: event.target.value
         })
-        this.props._handleNameOfTheInput(this.state.inputValue)
+        this.props._handleNameOfTheInput(event.target.value)
     }
 
     render() {
